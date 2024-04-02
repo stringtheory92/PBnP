@@ -19,6 +19,10 @@ class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User? // (firebase auth user) tells app whether or not there is a user logged in, to direct to login flow or profile view
     @Published var currentUser: User? // user obj in app
     
+    private let db = Firestore.firestore()
+    // all alarms for currentUser are fetched here within fetchUser()
+    private var alarmManager = AlarmManager()
+    
     init() {
         self.userSession = Auth.auth().currentUser
         
@@ -44,7 +48,7 @@ class AuthViewModel: ObservableObject {
             self.userSession = result.user                                                        // if we get the result, set userSession property (line 13)
             let user = User(id: result.user.uid, fullname: fullname, email: email)              // create our user instance with additional properies defined by User model
             let encodedUser = try Firestore.Encoder().encode(user)                              // encode that user instance
-            try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser) // add the new user instance (with additional properties) to firestore
+            try await db.collection("users").document(user.id).setData(encodedUser) // add the new user instance (with additional properties) to firestore
             
             await fetchUser()
         } catch {
@@ -69,10 +73,16 @@ class AuthViewModel: ObservableObject {
     func fetchUser() async {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         // could implement do/catch for getting document. no big deal for now
-        guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else { return } // .getDocument returns a snapshot
+        guard let snapshot = try? await db.collection("users").document(uid).getDocument() else { return } // .getDocument returns a snapshot
         self.currentUser = try? snapshot.data(as: User.self) // setting User property defined as Published above
         
         print("DEBUG: current user is \(self.currentUser)")
+        
+        if let userId = self.currentUser?.id {
+                alarmManager.fetchAlarms(forUserId: userId)
+            }
+        
+        print("alarms fetched")
     }
     
 }

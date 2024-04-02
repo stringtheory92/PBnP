@@ -14,7 +14,8 @@ struct ContentView: View {
     var body: some View {
         Group {
             if viewModel.userSession != nil {
-                ProfileView()
+//                ProfileView()
+                ClockHome()
             } else {
                 LoginView()
             }

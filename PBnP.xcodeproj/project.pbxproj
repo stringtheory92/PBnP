@@ -22,6 +22,9 @@
 		8C48DD362BBC47D50073C94A /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8C48DD352BBC47D50073C94A /* FirebaseFirestoreSwift */; };
 		8C48DD382BBC47D50073C94A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 8C48DD372BBC47D50073C94A /* FirebaseStorage */; };
 		8C48DD3C2BBC487B0073C94A /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C48DD3B2BBC487B0073C94A /* AuthViewModel.swift */; };
+		8CBDC76E2BBC6D8C00698E4F /* ClockHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBDC76D2BBC6D8C00698E4F /* ClockHome.swift */; };
+		8CBDC7722BBC70AD00698E4F /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBDC7712BBC70AD00698E4F /* AlarmManager.swift */; };
+		8CBDC7742BBC73B300698E4F /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBDC7732BBC73B300698E4F /* Alarm.swift */; };
 		8CD871192BBB284400D84A19 /* PBnPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD871182BBB284400D84A19 /* PBnPApp.swift */; };
 		8CD8711B2BBB284400D84A19 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD8711A2BBB284400D84A19 /* Persistence.swift */; };
 		8CD8711E2BBB284400D84A19 /* PBnP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8CD8711C2BBB284400D84A19 /* PBnP.xcdatamodeld */; };
@@ -60,6 +63,9 @@
 		8C48DD2F2BBC3F1B0073C94A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8C48DD312BBC46F30073C94A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8C48DD3B2BBC487B0073C94A /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		8CBDC76D2BBC6D8C00698E4F /* ClockHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockHome.swift; sourceTree = "<group>"; };
+		8CBDC7712BBC70AD00698E4F /* AlarmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
+		8CBDC7732BBC73B300698E4F /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		8CD871152BBB284400D84A19 /* PBnP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PBnP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD871182BBB284400D84A19 /* PBnPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBnPApp.swift; sourceTree = "<group>"; };
 		8CD8711A2BBB284400D84A19 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -115,6 +121,7 @@
 		8C48DD182BBB38540073C94A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8CBDC7732BBC73B300698E4F /* Alarm.swift */,
 				8C48DD2F2BBC3F1B0073C94A /* User.swift */,
 			);
 			path = Model;
@@ -123,6 +130,7 @@
 		8C48DD192BBB385E0073C94A /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				8CBDC76B2BBC6D2D00698E4F /* Clock */,
 				8C48DD1F2BBB445C0073C94A /* Authentication */,
 				8C48DD202BBB44630073C94A /* Profile */,
 				8C48DD1B2BBB3B730073C94A /* Root */,
@@ -177,6 +185,31 @@
 			isa = PBXGroup;
 			children = (
 				8C48DD3B2BBC487B0073C94A /* AuthViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8CBDC76B2BBC6D2D00698E4F /* Clock */ = {
+			isa = PBXGroup;
+			children = (
+				8CBDC76F2BBC704500698E4F /* ViewModel */,
+				8CBDC76C2BBC6D6000698E4F /* View */,
+			);
+			path = Clock;
+			sourceTree = "<group>";
+		};
+		8CBDC76C2BBC6D6000698E4F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8CBDC76D2BBC6D8C00698E4F /* ClockHome.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8CBDC76F2BBC704500698E4F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8CBDC7712BBC70AD00698E4F /* AlarmManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -387,10 +420,13 @@
 			files = (
 				8C48DD2A2BBC396A0073C94A /* ProfileView.swift in Sources */,
 				8CD871192BBB284400D84A19 /* PBnPApp.swift in Sources */,
+				8CBDC7742BBC73B300698E4F /* Alarm.swift in Sources */,
 				8C48DD2E2BBC3C7A0073C94A /* SettingsRowView.swift in Sources */,
 				8C48DD2C2BBC39980073C94A /* ViewTemplate.swift in Sources */,
+				8CBDC76E2BBC6D8C00698E4F /* ClockHome.swift in Sources */,
 				8CD8711B2BBB284400D84A19 /* Persistence.swift in Sources */,
 				8C48DD1D2BBB3C220073C94A /* ContentView.swift in Sources */,
+				8CBDC7722BBC70AD00698E4F /* AlarmManager.swift in Sources */,
 				8C48DD282BBB51D40073C94A /* RegistrationView.swift in Sources */,
 				8C48DD262BBB47B20073C94A /* InputView.swift in Sources */,
 				8C48DD3C2BBC487B0073C94A /* AuthViewModel.swift in Sources */,

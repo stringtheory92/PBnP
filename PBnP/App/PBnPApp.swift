@@ -14,6 +14,7 @@ import Firebase
 struct PBnPApp: App {
     let persistenceController = PersistenceController.shared // for CoreData. Might be able to delete
     @StateObject var viewModel = AuthViewModel()
+    @StateObject var alarmManager = AlarmManager()
 
     init() {
         FirebaseApp.configure()
@@ -24,6 +25,7 @@ struct PBnPApp: App {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext) // for CoreData. Might be able to delete
                 .environmentObject(viewModel)
+                .environmentObject(alarmManager)
         }
     }
 }
