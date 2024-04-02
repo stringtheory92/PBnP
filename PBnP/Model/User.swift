@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User: Identifiable, Codable {
+struct User: Identifiable, Codable { // Codable: Decodes incoming raw json into data that conforms to structure below
     let id: String
     let fullname: String
     let email: String

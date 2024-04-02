@@ -12,6 +12,8 @@ import SwiftUI
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
+    @EnvironmentObject var viewModel: AuthViewModel
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -23,7 +25,7 @@ struct LoginView: View {
                 
                 VStack(spacing: 24) {
                     InputView(text: $email, title: "Email Address", placeholder: "name@example.com")
-//                        .autocapitalization(.none) <== look up later
+                        .autocapitalization(.none) // <== look up later
                     
                     InputView(text: $password, title: "Password", placeholder: "Enter your password", isSecureField: true)
                     
@@ -33,6 +35,10 @@ struct LoginView: View {
                 .padding(.top, 12)
                 
                 Button(action: {
+                    Task {
+                        try await viewModel.signIn(withEmail: email, password: password)
+                    }
+                    
                     print("Log user in...")
                 }, label: {
                     HStack {
@@ -46,6 +52,8 @@ struct LoginView: View {
                         
                 })
                 .background(Color(.systemBlue))
+                .disabled(!formIsValid)
+                .opacity(formIsValid ? 1.0 : 0.5)
                 .cornerRadius(10)
                 .padding(.top, 24)
             Spacer()
@@ -65,6 +73,19 @@ struct LoginView: View {
             }
         }
     }
+}
+
+// MARK: - AuthenticationFormProtocol
+
+extension LoginView: AuthenticationFormProtocol {
+    var formIsValid: Bool {
+        return !email.isEmpty
+        && email.contains("@")
+        && !password.isEmpty
+        && password.count > 5
+    }
+    
+    
 }
 
 struct LoginView_Previews: PreviewProvider {
